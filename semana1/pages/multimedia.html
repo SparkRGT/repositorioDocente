@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multimedia - Mi Sitio Web</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        nav {
+            background-color: #444;
+            padding: 1rem;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+        }
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        .media-container {
+            margin: 2rem 0;
+        }
+        figure {
+            margin: 2rem 0;
+            text-align: center;
+        }
+        figcaption {
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+        video, audio {
+            width: 100%;
+            max-width: 600px;
+            margin: 1rem 0;
+        }
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .image-card {
+            background: #f9f9f9;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .image-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Multimedia</h1>
+        <p>Ejemplos de imágenes, video y audio</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="../index.html">Inicio</a></li>
+            <li><a href="listas.html">Listas</a></li>
+            <li><a href="tablas.html">Tablas</a></li>
+            <li><a href="multimedia.html">Multimedia</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+            <li><a href="portafolio.html">Portafolio</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section>
+            <h2>Imágenes Locales</h2>
+            <div class="image-grid">
+                <div class="image-card">
+                    <figure>
+                        <img src="../assets/images/ejemplo.jpg" alt="Imagen de ejemplo local" width="300" height="200">
+                        <figcaption>Imagen local desde la carpeta assets</figcaption>
+                    </figure>
+                </div>
+            </div>
+            <p>Para agregar tus propias imágenes:</p>
+            <ol>
+                <li>Coloca tus imágenes en la carpeta <code>assets</code></li>
+                <li>Usa la ruta relativa <code>../assets/nombre-de-tu-imagen.jpg</code></li>
+                <li>Asegúrate de que el formato de la imagen sea compatible (jpg, png, gif, etc.)</li>
+            </ol>
+
+            <h2>Imágenes Remotas</h2>
+            <figure>
+                <img src="https://picsum.photos/600/400" alt="Imagen de ejemplo remota" width="600" height="400">
+                <figcaption>Una imagen de ejemplo remota con caption</figcaption>
+            </figure>
+
+            <h2>Video</h2>
+            <div class="media-container">
+                <video controls>
+                    <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                    Tu navegador no soporta el elemento de video.
+                </video>
+                <figcaption>Video de ejemplo</figcaption>
+            </div>
+
+            <h2>Audio</h2>
+            <div class="media-container">
+                <audio controls>
+                    <source src="https://www.w3schools.com/html/horse.ogg" type="audio/ogg">
+                    Tu navegador no soporta el elemento de audio.
+                </audio>
+                <figcaption>Audio de ejemplo</figcaption>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Mi Sitio Web. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html> 

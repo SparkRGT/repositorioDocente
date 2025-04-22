@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tablas - Mi Sitio Web</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        nav {
+            background-color: #444;
+            padding: 1rem;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+        }
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Tablas</h1>
+        <p>Ejemplos de tablas HTML</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="../index.html">Inicio</a></li>
+            <li><a href="listas.html">Listas</a></li>
+            <li><a href="tablas.html">Tablas</a></li>
+            <li><a href="multimedia.html">Multimedia</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+            <li><a href="portafolio.html">Portafolio</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section>
+            <h2>Tabla Básica</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Edad</th>
+                        <th>Ciudad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Juan Pérez</td>
+                        <td>25</td>
+                        <td>Madrid</td>
+                    </tr>
+                    <tr>
+                        <td>María García</td>
+                        <td>30</td>
+                        <td>Barcelona</td>
+                    </tr>
+                    <tr>
+                        <td>Carlos López</td>
+                        <td>28</td>
+                        <td>Valencia</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Tabla con Encabezados Múltiples</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th rowspan="2">Nombre</th>
+                        <th colspan="2">Contacto</th>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <th>Teléfono</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Ana Martínez</td>
+                        <td>ana@email.com</td>
+                        <td>123-456-789</td>
+                    </tr>
+                    <tr>
+                        <td>Pedro Sánchez</td>
+                        <td>pedro@email.com</td>
+                        <td>987-654-321</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Mi Sitio Web. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html> 

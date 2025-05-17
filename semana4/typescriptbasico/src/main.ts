@@ -140,9 +140,38 @@ const metadatosFactura = {
 } as const;
 
 // ===== PUNTO 5: FUNCIONES TIPADAS =====
-// Función genérica para mostrar items
+// Ejemplos de funciones tipadas
 function displayAllItems<T>(items: T[]): void {
     console.log('Items:', items);
+}
+
+// Función con tipos genéricos y restricciones
+function calcularTotal<T extends { price: number; quantity?: number }>(items: T[]): number {
+    return items.reduce((total, item) => total + (item.price * (item.quantity || 1)), 0);
+}
+
+// Función con tipos de unión
+function formatearPrecio(precio: number | string): string {
+    const numPrecio = typeof precio === 'string' ? parseFloat(precio) : precio;
+    return `$${numPrecio.toFixed(2)}`;
+}
+
+// Función con tipos de retorno específicos
+function buscarClientePorId(id: number): Customer | undefined {
+    return customers.find(cliente => cliente.id === id);
+}
+
+// Función con parámetros opcionales
+function actualizarStock(producto: Product, cantidad: number, esIncremento: boolean = true): void {
+    const nuevoStock = esIncremento ? producto.stock + cantidad : producto.stock - cantidad;
+    producto.updateStock(nuevoStock);
+}
+
+// Función con tipos de callback
+type CallbackResultado<T> = (resultado: T) => void;
+function procesarFactura(factura: IInvoice, callback: CallbackResultado<string>): void {
+    const resumen = `Factura #${factura.id} - Total: $${factura.total}`;
+    callback(resumen);
 }
 
 // ===== PUNTO 6: TIPOS ESPECIALES =====
@@ -551,8 +580,26 @@ app.innerHTML = `
 
     <section class="point">
         <h2>5. Funciones Tipadas</h2>
+        <h3>Ejemplos de Funciones:</h3>
         <pre>${JSON.stringify({
-            displayAllItems: "Función genérica para mostrar items"
+            displayAllItems: "Función genérica para mostrar items",
+            calcularTotal: "Función con tipos genéricos y restricciones",
+            formatearPrecio: "Función con tipos de unión",
+            buscarClientePorId: "Función con tipos de retorno específicos",
+            actualizarStock: "Función con parámetros opcionales",
+            procesarFactura: "Función con tipos de callback"
+        }, null, 2)}</pre>
+
+        <h3>Resultados de Ejecución:</h3>
+        <pre>${JSON.stringify({
+            totalProductos: calcularTotal(products),
+            precioFormateado: formatearPrecio(999.99),
+            clienteEncontrado: buscarClientePorId(1)?.name,
+            procesamientoFactura: (() => {
+                let resultado = '';
+                procesarFactura(invoices[0], (res) => { resultado = res; });
+                return resultado;
+            })()
         }, null, 2)}</pre>
     </section>
 

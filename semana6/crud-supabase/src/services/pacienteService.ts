@@ -3,17 +3,31 @@ import type { Paciente, PacienteInput, PacienteUpdate } from '../types/paciente'
 
 export class PacienteService {
   static async getAll(): Promise<Paciente[]> {
-    const { data, error } = await supabase
-      .from('pacientes')
-      .select('*')
-      .order('id', { ascending: true })
+    try {
+      console.log('Intentando obtener pacientes...')
+      const { data, error, status, statusText } = await supabase
+        .from('pacientes')
+        .select('*')
+        .order('id', { ascending: true })
 
-    if (error) {
-      console.error('Error fetching pacientes:', error)
+      if (error) {
+        console.error('Error detallado al obtener pacientes:', {
+          error,
+          status,
+          statusText,
+          message: error.message,
+          details: error.details,
+          hint: error.hint
+        })
+        throw error
+      }
+
+      console.log('Pacientes obtenidos exitosamente:', data?.length || 0)
+      return data || []
+    } catch (error) {
+      console.error('Error inesperado al obtener pacientes:', error)
       throw error
     }
-
-    return data || []
   }
 
   static async create(paciente: PacienteInput): Promise<void> {

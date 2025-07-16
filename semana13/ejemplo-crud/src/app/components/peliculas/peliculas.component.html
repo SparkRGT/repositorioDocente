@@ -1,0 +1,140 @@
+<div class="peliculas-container">
+  <!-- Header del componente -->
+  <div class="header">
+    <h1>🎬 Gestión de Películas</h1>
+    <p class="subtitle">CRUD completo para administrar tu colección de películas</p>
+  </div>
+
+  <!-- Formulario para agregar/editar películas -->
+  <div class="form-section">
+    <div class="form-card">
+      <h2>{{ modoEdicion ? '✏️ Editar Película' : '➕ Agregar Nueva Película' }}</h2>
+      
+      <form (ngSubmit)="modoEdicion ? actualizarPelicula() : agregarPelicula()" #peliculaForm="ngForm">
+        <div class="form-group">
+          <label for="nombre">Nombre de la Película:</label>
+          <input 
+            type="text" 
+            id="nombre" 
+            name="nombre"
+            [(ngModel)]="nuevaPelicula.nombre"
+            placeholder="Ej: El Padrino"
+            required
+            class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="urlImagen">URL de la Imagen:</label>
+          <input 
+            type="url" 
+            id="urlImagen" 
+            name="urlImagen"
+            [(ngModel)]="nuevaPelicula.urlImagen"
+            placeholder="https://ejemplo.com/imagen.jpg"
+            required
+            class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="plot">Sinopsis:</label>
+          <textarea 
+            id="plot" 
+            name="plot"
+            [(ngModel)]="nuevaPelicula.plot"
+            placeholder="Describe brevemente la trama de la película..."
+            required
+            rows="4"
+            class="form-control"></textarea>
+        </div>
+
+        <div class="form-actions">
+          <button 
+            type="submit" 
+            class="btn btn-primary"
+            [disabled]="!peliculaForm.form.valid">
+            {{ modoEdicion ? '💾 Actualizar' : '➕ Agregar' }}
+          </button>
+          
+          <button 
+            type="button" 
+            class="btn btn-secondary"
+            (click)="cancelarEdicion()"
+            *ngIf="modoEdicion">
+            ❌ Cancelar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Lista de películas -->
+  <div class="peliculas-section">
+    <h2>📋 Lista de Películas ({{ peliculas.length }})</h2>
+    
+    <!-- Estado de carga -->
+    <div *ngIf="cargando" class="loading">
+      <div class="spinner"></div>
+      <p>Cargando películas...</p>
+    </div>
+
+    <!-- Mensaje cuando no hay películas -->
+    <div *ngIf="!cargando && peliculas.length === 0" class="empty-state">
+      <p>🎭 No hay películas registradas</p>
+      <p>¡Agrega tu primera película usando el formulario de arriba!</p>
+    </div>
+
+    <!-- Grid de películas -->
+    <div *ngIf="!cargando && peliculas.length > 0" class="peliculas-grid">
+      <div 
+        *ngFor="let pelicula of peliculas" 
+        class="pelicula-card"
+        [class.editing]="peliculaSeleccionada?.id === pelicula.id">
+        
+        <!-- Imagen de la película -->
+        <div class="pelicula-imagen">
+          <img 
+            [src]="pelicula.urlImagen" 
+            [alt]="pelicula.nombre"
+            (error)="onImageError($event)">
+        </div>
+
+        <!-- Información de la película -->
+        <div class="pelicula-info">
+          <h3 class="pelicula-titulo">{{ pelicula.nombre }}</h3>
+          <p class="pelicula-plot">{{ pelicula.plot }}</p>
+          <div class="pelicula-id">ID: {{ pelicula.id }}</div>
+        </div>
+
+        <!-- Botones de acción -->
+        <div class="pelicula-actions">
+          <button 
+            class="btn btn-edit"
+            (click)="editarPelicula(pelicula)"
+            title="Editar película">
+            ✏️ Editar
+          </button>
+          
+          <button 
+            class="btn btn-delete"
+            (click)="eliminarPelicula(pelicula.id)"
+            title="Eliminar película">
+            🗑️ Eliminar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Información adicional -->
+  <div class="info-section">
+    <div class="info-card">
+      <h3>ℹ️ Información del Proyecto</h3>
+      <ul>
+        <li><strong>Framework:</strong> Angular 17</li>
+        <li><strong>Arquitectura:</strong> Componentes + Servicios</li>
+        <li><strong>Almacenamiento:</strong> Arreglo en memoria</li>
+        <li><strong>Funcionalidades:</strong> CRUD completo</li>
+      </ul>
+    </div>
+  </div>
+</div> 

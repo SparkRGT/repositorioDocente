@@ -1,0 +1,11 @@
+.container {
+    margin-top: 20px;
+}
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.col-md-4 {
+    width: 30%;
+}
